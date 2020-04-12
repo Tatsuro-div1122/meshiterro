@@ -42,3 +42,13 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
     # add_index :users, :unlock_token,         unique: true
   end
 end
+
+class User < ApplicationRecord
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticable, :registerable,
+      :recoverable, :rememberable, :validatable
+
+  has_many :post_images, dependent :destroy
+
+end
